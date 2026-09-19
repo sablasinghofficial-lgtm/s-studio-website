@@ -97,7 +97,7 @@ with open('admin.html', 'w', encoding='utf-8') as f:
     w(f, '<button class="sbi" onclick="sp(this,\'services\')" id="nb-services"><span style="color:#C9A96E">&#10022;</span>Services</button>\n')
     w(f, '<button class="sbi" onclick="sp(this,\'testimonials\')" id="nb-testimonials"><span style="color:#C9A96E">&#10077;</span>Testimonials</button>\n')
     w(f, '<button class="sbi" onclick="sp(this,\'settings\')" id="nb-settings"><span style="color:#C9A96E">&#9881;</span>Settings</button>\n')
-    w(f, '<a href="code.html" target="_blank" class="sbi" style="display:flex;text-decoration:none"><span style="color:#C9A96E">&#8599;</span>View Website</a>\n')
+    w(f, '<a href="/" target="_blank" class="sbi" style="display:flex;text-decoration:none"><span style="color:#C9A96E">&#8599;</span>View Website</a>\n')
     w(f, '</nav>\n<div style="padding:12px 17px;border-top:1px solid rgba(201,169,110,.15)">\n')
     w(f, '<p style="font-size:12px;color:#C9A96E;font-weight:500">Sabla Singh</p>\n')
     w(f, '<p style="font-size:10px;color:rgba(245,240,232,.3)">Sablasingh@0404</p>\n')
@@ -128,7 +128,7 @@ with open('admin.html', 'w', encoding='utf-8') as f:
     w(f, '<div style="margin-top:18px;background:rgba(10,61,43,.38);border:1px solid rgba(201,169,110,.16);padding:20px"><h3 class="fl" style="font-size:17px;color:#C9A96E;font-weight:300;margin-bottom:12px">Quick Actions</h3><div class="g4">\n')
     w(f, '<button onclick="sp(document.getElementById(\'nb-gallery\'),\'gallery\')" style="background:#062C20;border:1px solid rgba(201,169,110,.22);padding:16px;text-align:center;cursor:pointer;width:100%"><p style="font-size:20px;color:#C9A96E;margin-bottom:5px">&#8853;</p><p style="font-size:11px;color:rgba(245,240,232,.6)">Add Photo</p></button>\n')
     w(f, '<button onclick="sp(document.getElementById(\'nb-queries\'),\'queries\')" style="background:#062C20;border:1px solid rgba(201,169,110,.22);padding:16px;text-align:center;cursor:pointer;width:100%"><p style="font-size:20px;color:#C9A96E;margin-bottom:5px">&#9993;</p><p style="font-size:11px;color:rgba(245,240,232,.6)">View Queries</p></button>\n')
-    w(f, '<a href="code.html" target="_blank" style="background:#062C20;border:1px solid rgba(201,169,110,.22);padding:16px;text-align:center;text-decoration:none;display:block"><p style="font-size:20px;color:#C9A96E;margin-bottom:5px">&#8599;</p><p style="font-size:11px;color:rgba(245,240,232,.6)">Open Website</p></a>\n')
+    w(f, '<a href="/" target="_blank" style="background:#062C20;border:1px solid rgba(201,169,110,.22);padding:16px;text-align:center;text-decoration:none;display:block"><p style="font-size:20px;color:#C9A96E;margin-bottom:5px">&#8599;</p><p style="font-size:11px;color:rgba(245,240,232,.6)">Open Website</p></a>\n')
     w(f, '</div></div>\n</div>\n')
 
     # --- QUERIES ---

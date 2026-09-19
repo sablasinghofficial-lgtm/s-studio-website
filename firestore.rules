@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Check if the user is a logged-in Admin
+    function isAdmin() {
+      return request.auth != null;
+    }
+
+    // Confidential Data (Queries & Bookings)
+    // Public can ONLY create (submit form). Admins can read, update, delete.
+    match /queries/{document=**} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+    match /bookings/{document=**} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Public Website Content (Gallery, Services, Testimonials)
+    // Public can read. Admins can create, update, delete.
+    match /gallery/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /services/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /testimonials/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

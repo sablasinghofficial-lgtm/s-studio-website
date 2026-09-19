@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>S Studio | Cloud Admin Panel</title>
+<title>S Studio | Secure Admin Panel</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *{font-family:Jost,sans-serif;box-sizing:border-box;margin:0;padding:0}
@@ -57,19 +57,19 @@ input[type=file]{display:none}
 </style>
 </head>
 <body>
-<div id="ls">
+<div id="ls" style="display:flex;">
 <div class="lbox">
 <div style="text-align:center;margin-bottom:24px">
 <img src="logo_transparent.png" alt="" onerror="this.style.display='none'" style="height:50px;display:block;margin:0 auto 9px;object-fit:contain"/>
 <p class="fl" style="font-size:24px;color:#C9A96E;font-weight:300">S Studio</p>
-<p style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,240,232,.36);margin-top:3px">Admin Control Panel</p>
+<p style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,240,232,.36);margin-top:3px">Secure Admin Control</p>
 <div style="height:1px;background:rgba(201,169,110,.25);width:46px;margin:11px auto 0"></div>
 </div>
-<div id="lerr" style="display:none;background:rgba(127,29,29,.25);border:1px solid rgba(239,68,68,.25);color:#fca5a5;font-size:12px;text-align:center;padding:8px;margin-bottom:11px">Invalid credentials.</div>
-<form onsubmit="doLogin(event)">
-<div style="margin-bottom:11px"><label class="lbl">Email</label><input id="lemail" class="inp" type="text" placeholder="Login Email"/></div>
-<div style="margin-bottom:15px"><label class="lbl">Password</label><div style="position:relative"><input id="lpass" class="inp" type="password" placeholder="Password" style="padding-right:46px"/><button type="button" onclick="togglePw()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(201,169,110,.5);font-size:10px;text-transform:uppercase;cursor:pointer">Show</button></div></div>
-<button type="submit" id="lbtn" class="bg" style="width:100%;padding:12px">Access Admin Panel &rarr;</button>
+<div id="lerr" style="display:none;background:rgba(127,29,29,.25);border:1px solid rgba(239,68,68,.25);color:#fca5a5;font-size:12px;text-align:center;padding:8px;margin-bottom:11px">Invalid email or password.</div>
+<form id="login-form">
+<div style="margin-bottom:11px"><label class="lbl">Firebase Admin Email</label><input id="lemail" class="inp" type="email" placeholder="admin@example.com" required/></div>
+<div style="margin-bottom:15px"><label class="lbl">Password</label><div style="position:relative"><input id="lpass" class="inp" type="password" placeholder="••••••••" required style="padding-right:46px"/><button type="button" onclick="togglePw()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(201,169,110,.5);font-size:10px;text-transform:uppercase;cursor:pointer">Show</button></div></div>
+<button type="submit" id="lbtn" class="bg" style="width:100%;padding:12px">Secure Login &rarr;</button>
 </form>
 </div>
 </div>
@@ -91,12 +91,12 @@ input[type=file]{display:none}
 <button class="sbi" onclick="sp(this,'services')" id="nb-services"><span style="color:#C9A96E">&#10022;</span>Services</button>
 <button class="sbi" onclick="sp(this,'testimonials')" id="nb-testimonials"><span style="color:#C9A96E">&#10077;</span>Testimonials</button>
 <button class="sbi" onclick="sp(this,'settings')" id="nb-settings"><span style="color:#C9A96E">&#9881;</span>Settings</button>
-<a href="code.html" target="_blank" class="sbi" style="display:flex;text-decoration:none"><span style="color:#C9A96E">&#8599;</span>View Website</a>
+<a href="/" target="_blank" class="sbi" style="display:flex;text-decoration:none"><span style="color:#C9A96E">&#8599;</span>View Website</a>
 </nav>
 <div style="padding:12px 17px;border-top:1px solid rgba(201,169,110,.15)">
-<p style="font-size:12px;color:#C9A96E;font-weight:500">Sabla Singh</p>
-<p style="font-size:10px;color:rgba(245,240,232,.3)">Sablasingh@0404</p>
-<button onclick="doLogout()" style="margin-top:5px;background:none;border:none;font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:rgba(239,68,68,.48);cursor:pointer">&#8617; Logout</button>
+<p style="font-size:12px;color:#C9A96E;font-weight:500">Secure Session</p>
+<p style="font-size:10px;color:rgba(245,240,232,.3)" id="u-email"></p>
+<button id="btn-logout" style="margin-top:5px;background:none;border:none;font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:rgba(239,68,68,.48);cursor:pointer">&#8617; Logout</button>
 </div>
 </aside>
 <header class="topbar">
@@ -118,7 +118,7 @@ input[type=file]{display:none}
 <div style="margin-top:18px;background:rgba(10,61,43,.38);border:1px solid rgba(201,169,110,.16);padding:20px"><h3 class="fl" style="font-size:17px;color:#C9A96E;font-weight:300;margin-bottom:12px">Quick Actions</h3><div class="g4">
 <button onclick="sp(document.getElementById('nb-gallery'),'gallery')" style="background:#062C20;border:1px solid rgba(201,169,110,.22);padding:16px;text-align:center;cursor:pointer;width:100%"><p style="font-size:20px;color:#C9A96E;margin-bottom:5px">&#8853;</p><p style="font-size:11px;color:rgba(245,240,232,.6)">Add Photo</p></button>
 <button onclick="sp(document.getElementById('nb-queries'),'queries')" style="background:#062C20;border:1px solid rgba(201,169,110,.22);padding:16px;text-align:center;cursor:pointer;width:100%"><p style="font-size:20px;color:#C9A96E;margin-bottom:5px">&#9993;</p><p style="font-size:11px;color:rgba(245,240,232,.6)">View Queries</p></button>
-<a href="code.html" target="_blank" style="background:#062C20;border:1px solid rgba(201,169,110,.22);padding:16px;text-align:center;text-decoration:none;display:block"><p style="font-size:20px;color:#C9A96E;margin-bottom:5px">&#8599;</p><p style="font-size:11px;color:rgba(245,240,232,.6)">Open Website</p></a>
+<a href="/" target="_blank" style="background:#062C20;border:1px solid rgba(201,169,110,.22);padding:16px;text-align:center;text-decoration:none;display:block"><p style="font-size:20px;color:#C9A96E;margin-bottom:5px">&#8599;</p><p style="font-size:11px;color:rgba(245,240,232,.6)">Open Website</p></a>
 </div></div>
 </div>
 <div class="sect" id="s-queries">
@@ -149,7 +149,7 @@ input[type=file]{display:none}
 </div>
 <div class="sect" id="s-settings">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
-<div style="background:rgba(10,61,43,.38);border:1px solid rgba(201,169,110,.16);padding:20px"><h3 class="fl" style="font-size:18px;color:#C9A96E;font-weight:300;margin-bottom:13px">Account Details</h3><div style="margin-bottom:11px"><label class="lbl">Email</label><input value="Sablasingh@0404" readonly class="inp" style="opacity:.62;cursor:not-allowed"/></div><div><label class="lbl">Password</label><input type="password" value="sablasingh123" readonly class="inp" style="opacity:.62;cursor:not-allowed"/></div></div>
+<div style="background:rgba(10,61,43,.38);border:1px solid rgba(201,169,110,.16);padding:20px"><h3 class="fl" style="font-size:18px;color:#C9A96E;font-weight:300;margin-bottom:13px">Account Details</h3><div style="margin-bottom:11px"><label class="lbl">Registered Email</label><input id="set-email" readonly class="inp" style="opacity:.62;cursor:not-allowed"/></div><p style="font-size:11px;color:rgba(245,240,232,.4)">Password is securely managed by Firebase Authentication.</p></div>
 <div style="background:rgba(10,61,43,.38);border:1px solid rgba(201,169,110,.16);padding:20px"><h3 class="fl" style="font-size:18px;color:#C9A96E;font-weight:300;margin-bottom:13px">Business Info</h3><div style="font-size:13px;color:rgba(245,240,232,.65)">
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(201,169,110,.09)"><span style="font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:rgba(245,240,232,.32)">Brand</span><span style="font-size:12px">S Studio</span></div>
 <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(201,169,110,.09)"><span style="font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:rgba(245,240,232,.32)">Location</span><span style="font-size:12px">Near Sarala Birla University, Ranchi</span></div>
@@ -224,26 +224,52 @@ input[type=file]{display:none}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 const firebaseConfig = {
   apiKey: "AIzaSyAWFB7kp8Z-z91PPSQTs8vFLxAiwwt_F6g",
   authDomain: "fir-studio-86aaa.firebaseapp.com",
   projectId: "fir-studio-86aaa",
   storageBucket: "fir-studio-86aaa.firebasestorage.app",
   messagingSenderId: "767609525579",
-  appId: "1:767609525579:web:5abbde4b39f462083ec4ce",
-  measurementId: "G-CFD7R0C8Y7"
+  appId: "1:767609525579:web:5abbde4b39f462083ec4ce"
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 window.db = db; window.collection = collection; window.addDoc = addDoc; window.doc = doc; window.updateDoc = updateDoc; window.deleteDoc = deleteDoc;
 window.queries = []; window.bookings = []; window.gallery = []; window.services = []; window.testimonials = [];
-onSnapshot(collection(db, "queries"), (snap) => { window.queries = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); });
-onSnapshot(collection(db, "bookings"), (snap) => { window.bookings = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); });
-onSnapshot(collection(db, "gallery"), (snap) => { window.gallery = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); });
-onSnapshot(collection(db, "services"), (snap) => { window.services = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); });
-onSnapshot(collection(db, "testimonials"), (snap) => { window.testimonials = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); });
-document.getElementById("livend").style.animation = "pu 1.5s infinite";
-document.getElementById("livetxt").textContent = "Live Connected";
+let unsubscribers = [];
+function attachListeners() {
+  unsubscribers.forEach(u=>u()); unsubscribers=[];
+  unsubscribers.push(onSnapshot(collection(db, "queries"), (snap) => { window.queries = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); }, (err)=>{console.error("No access to queries yet");}));
+  unsubscribers.push(onSnapshot(collection(db, "bookings"), (snap) => { window.bookings = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); }, (err)=>{console.error("No access to bookings yet");}));
+  unsubscribers.push(onSnapshot(collection(db, "gallery"), (snap) => { window.gallery = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); }));
+  unsubscribers.push(onSnapshot(collection(db, "services"), (snap) => { window.services = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); }));
+  unsubscribers.push(onSnapshot(collection(db, "testimonials"), (snap) => { window.testimonials = snap.docs.map(d=>({id:d.id, ...d.data()})); if(document.getElementById("ap").style.display!=="none") refresh(); }));
+  document.getElementById("livend").style.animation = "pu 1.5s infinite";
+  document.getElementById("livetxt").textContent = "Securely Connected";
+}
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("ls").style.display="none";
+    document.getElementById("ap").style.display="block";
+    document.getElementById("u-email").textContent=user.email;
+    document.getElementById("set-email").value=user.email;
+    attachListeners();
+  } else {
+    document.getElementById("ls").style.display="flex";
+    document.getElementById("ap").style.display="none";
+    unsubscribers.forEach(u=>u()); unsubscribers=[];
+  }
+});
+document.getElementById("login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const em = document.getElementById("lemail").value.trim(), pw = document.getElementById("lpass").value.trim();
+  const btn = document.getElementById("lbtn"); btn.innerHTML="<span class='loader'></span>";
+  try { await signInWithEmailAndPassword(auth, em, pw); } catch(err) { document.getElementById("lerr").style.display="block"; btn.innerHTML="Secure Login &rarr;"; }
+});
+document.getElementById("btn-logout").addEventListener("click", () => { signOut(auth); });
+window.togglePw = function(){const i=document.getElementById("lpass"),b=i.nextElementSibling;i.type=i.type==="password"?"text":"password";b.textContent=i.type==="password"?"Show":"Hide";}
 window.cQId=null; window.cBId=null; window.cPhId=null; window.cSvId=null; window.cTId=null; window.cQF="all";
 const C_NAME = "iqlwz76c"; const C_PRESET = "ml_default";
 window.uploadToCloudinary = async function(e) {
@@ -262,9 +288,6 @@ window.uploadToCloudinary = async function(e) {
     console.error(err); lbl.innerHTML = "Upload Failed. Try again.";
   } finally { lbl.style.pointerEvents = "auto"; }
 };
-window.doLogin = function(e){e.preventDefault();const em=document.getElementById("lemail").value.trim(),pw=document.getElementById("lpass").value.trim();if(em==="Sablasingh@0404"&&pw==="sablasingh123"){document.getElementById("ls").style.display="none";document.getElementById("ap").style.display="block";refresh();}else{document.getElementById("lerr").style.display="block";}}
-window.doLogout = function(){document.getElementById("ls").style.display="flex";document.getElementById("ap").style.display="none";}
-window.togglePw = function(){const i=document.getElementById("lpass"),b=i.nextElementSibling;i.type=i.type==="password"?"text":"password";b.textContent=i.type==="password"?"Show":"Hide";}
 const pages=["dashboard","queries","bookings","gallery","services","testimonials","settings"];
 const titles={dashboard:["Dashboard","Overview & Analytics"],queries:["Queries","Client Messages & Enquiries"],bookings:["Bookings","Session Booking Requests"],gallery:["Gallery Manager","Add, Edit & Remove Photos"],services:["Services","Add, Edit & Delete Service Listings"],testimonials:["Testimonials","Add, Edit & Delete Client Reviews"],settings:["Settings","Account & Business Info"]};
 window.sp = function(btn,name){pages.forEach(p=>{const el=document.getElementById("s-"+p);if(el)el.classList.remove("on");const nb=document.getElementById("nb-"+p);if(nb)nb.classList.remove("on");});const el=document.getElementById("s-"+name);if(el)el.classList.add("on");if(btn)btn.classList.add("on");document.getElementById("ptitle").textContent=titles[name][0];document.getElementById("psub").textContent=titles[name][1];if(name==="gallery")window.rga();else if(name==="queries")window.rqs("all");else if(name==="bookings")window.rbs();else if(name==="dashboard")window.rdash();else if(name==="services")window.rsvc();else if(name==="testimonials")window.rtest();}
